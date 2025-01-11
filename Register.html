@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Register</title>
+<style>
+	form {
+		background-color : lightpink;
+		border : 3px solid black;
+		box-shadow : 1px 1px 10px 10px orange;
+		text-align : ceter;
+		padding : 10px 40px;
+		
+		margin-left :25%;
+		margin-right :25%;
+		
+	}
+	body{
+	 background-color:grey;
+	 background-color:violate;
+	 margin : 4% 4% 0% 4%;
+	 
+	}
+	p{
+	  font-size:12px;
+	  color:red;
+	}
+</style>
+</head>
+<body>
+   <form action="john" method="get">
+        <label>Enter name :</label>
+        <input type="text" name ="name">
+        <br>
+        <label>Enter Date Of Birth : </label>
+        <input type="date" name='date'>
+        <br>
+        <input type="checkbox" onclick="confirmCheck()" value="Male" name="gender">male
+        <br>
+        <input type="checkbox" onclick="confirmCheck()" value ="Female" name="gender">Female
+        <br>
+        <input type="checkbox" value ="TranseGender" name="gender">TranseGender
+        <br>
+   		<label>Enter UserId :</label>
+   		<input id ="first" type="text" name="userid">
+   		<br>
+   		<p id ="id1" style="display:none">Email address is Wrong.(xxxx@gmail.com)</p>
+   		<br>
+   		<label>Enter Password :</label>
+   		<input id = "second" type="text" name="userpassword" onclick="idCheck()">
+   		<br>
+   		<p id="id2" style="display:none">Password not Strong.( Atleast 1 Capital and 1 Special characters.Total 8-15 letters)</p>
+   		<br>
+   		<label>Confirm Password :</label>
+   		<input id = "third" type = "text" name="confirmpassword" onclick="passwordCheck()">
+   		<br>
+   		<p id="id3" style="display:none">Check your confirm password</p>
+   		<br>
+   		<input type="checkbox" onclick="confirmCheck()">I'm not a Robot
+        <button id="button" type="submit" style = "display:none;" >finish</button>
+   </form>
+   
+   <script>
+   		function passwordCheck(){
+	   		var password = document.getElementById("second").value;
+	   		//var confirm = document.getElementById("third").value;
+	        //document.getElementById("second").style.border = "1px solid green";
+	        var special = 0, letters = 0, capital = 0;
+	        
+	        for(let i = 0; i < password.length; i++){
+	            letters++;
+	            if (password.charAt(i) >= 'A' && password.charAt(i) <= 'Z') capital++;
+	            else if ((password.charAt(i) >= 'a' && password.charAt(i) <= 'z') || (password.charAt(i) >= '0' && password.charAt(i) <= '9')) continue;
+	            else special++;
+	        }
+	         if( (letters >= 8 && letters <= 15) && special <= 1 && capital <= 1){
+	        	 document.getElementById("second").style.border = "1px solid green";
+	         }
+	         else {
+	        	 document.getElementById("second").style.border = "1px solid red";
+	        	 document.getElementById("id2").style.display = "block";
+	         }
+   		    
+        }
+   		function confirmCheck(){
+   			var password = document.getElementById("second").value;
+	   		var confirm = document.getElementById("third").value;
+	   		if( password === confirm ){
+	   			document.getElementById("third").style.border = "1px solid green";
+	   			if( document.getElementById("second").style.borderColor == "green" && document.getElementById("first").style.borderColor == "green"){
+	   				document.getElementById("button").style.display = "block";
+	   			}
+	   			
+	   		}
+	   		else {
+	   			document.getElementById("third").style.border = "1px solid red" ;
+	   			document.getElementById("id3").style.display = "block";
+	   		}
+	
+   		}
+        function idCheck(){
+        	var username = document.getElementById("first").value;
+        	var index = username.indexOf("@gmail.com");
+        	if(index == -1){
+        		document.getElementById("first").style.border = "1px solid red";
+        		document.getElementById("id1").style.display = "block";
+        	}
+        	else document.getElementById("first").style.border = "1px solid green";
+        }
+
+   </script>
+</body>
+</html>
